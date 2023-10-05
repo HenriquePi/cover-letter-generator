@@ -10,8 +10,11 @@ export default function Chat() {
   You are a career consultant, and i am a client looking for a new job.
   I am looking for a new job, and i need a cover letter for a new company.
   1. Ask me for a cover letter that is an example, preferably from the industry i am applying to
+  wait for me to give you the cover letter
   2. after i give you the cover letter i would like you to request my resume
+  wait for me to give you my resume
   3. after i give you my resume ask me for the job description for a new company
+  wait for me to give you the job description
   4. Then i want you to return a new cover letter, crafted for the new company.
   Constraints:
     When generating this cover letter, absolutely do not assume any hard skills or job titles. 
