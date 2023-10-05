@@ -6,8 +6,8 @@ import { Footer } from '@/layout/Footer'
 import styles from './layout.module.scss';
 
 export const metadata: Metadata = {
-  title: 'Henrique Pinto Software Developer',
-  description: 'Details about software development candidate Henrique Pinto. Specializes in React frameworks and TypeScript.',
+  title: 'Automatic Cover Letters',
+  description: 'Automatic cover letters, if your prospective employer will not read it, why should you write it?',
 }
 
 export default function RootLayout({
