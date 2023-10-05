@@ -6,4 +6,5 @@
   flex: 1 1 0;
   gap: var(--gap);
   padding-top: 80px;
+  padding: 80px var(--gap) 0;
 }

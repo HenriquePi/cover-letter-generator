@@ -1,0 +1,10 @@
+.message {
+  margin-bottom: var(--gap);
+  width: 90%;
+}
+.messageWrapper {
+  display: flex;
+  gap: var(--gap);
+  flex-direction: column;
+
+}

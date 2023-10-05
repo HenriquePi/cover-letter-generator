@@ -29,8 +29,14 @@
       font-size: 1.1rem;
       line-height: 1.2;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: calc(var(--gap) / 2 );
       @media (min-width: 768px) {
         font-size: 1.5rem;
+      }
+      img {
+        filter: invert(99%) sepia(47%) saturate(0%) hue-rotate(104deg) brightness(113%) contrast(100%);
       }
     }
   }
