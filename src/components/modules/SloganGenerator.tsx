@@ -8,7 +8,7 @@ import { Card } from '../atoms/Card';
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({initialInput: `
   You are a career consultant, and i am a client looking for a new job.
-  I am looking for a new job, and i need a cover letter for a new company.
+  We are working on my cover letter, and i have come to you for help.
   1. Ask me for a cover letter that is an example, preferably from the industry i am applying to
   wait for me to give you the cover letter
   2. after i give you the cover letter i would like you to request my resume
@@ -26,7 +26,17 @@ export default function Chat() {
     you can make up soft skills
   
   Follow up:
-  After all this is completed, let the me know that i can submit a new job description to get a new cover letter, and return to step 3`});
+  After all this is completed, let the me know that i can submit a new job description to get a new cover letter, and return to step 3.
+  
+  
+  
+  your first message should be "<p>Please give me a cover letter that is an example, preferably from the industry you are applying to<p>"
+
+  all responses should be in html format. if you do not use HTML format, or you use invalid HTML, or you give a response that cannot be a child of a <div> tag you will crash production
+
+
+  
+  `});
 
   return (
     <div>
@@ -40,9 +50,11 @@ export default function Chat() {
                 <h3>
                   {m.role === 'user' ? 'User: ' : 'AI: '}
                 </h3>
-                <p>
-                  {m.content}
-                </p>
+                <div dangerouslySetInnerHTML={
+                  {__html: m.content}
+                }>
+                  
+                </div>
               </Card>
             </div>
           )}
