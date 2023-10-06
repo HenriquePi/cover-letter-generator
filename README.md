@@ -1,3 +1,14 @@
+# Goals
+
+## issues
+
+- UX not clear on purpose of the app
+- UX not clear on what is expected of the user
+- chat UI is not required, maybe there are better UX solutions for this case (conversation isn't needed)
+- You can be more specific in the prompt, like telling it what its skills and weaknesses are, who it works for, etc.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

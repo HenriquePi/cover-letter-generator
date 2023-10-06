@@ -4,6 +4,7 @@ import { useChat } from 'ai/react';
 
 import styles from "./chat.module.scss"
 import { Card } from '../atoms/Card';
+import { useRef } from 'react';
  
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({initialInput: `
@@ -32,14 +33,30 @@ export default function Chat() {
   
   your first message should be "<p>Please give me a cover letter that is an example, preferably from the industry you are applying to<p>"
 
-  all responses should be in html format. if you do not use HTML format, or you use invalid HTML, or you give a response that cannot be a child of a <div> tag you will crash production
+  all responses should be in markdown format. if you do not use markdown format, or you use invalid markdown, or you give a response that cannot be a child of a <div> tag you will crash production
 
 
   
   `});
 
+
+  // submit on enter press
+
+  const myFormRef = useRef(null);
+
+  const onEnterPress = (e) => {
+    console.log(e.keyCode)
+    if(e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      myFormRef.current.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+    }
+  }
+  const initiateChat = () => {
+    myFormRef.current.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  }
+
   return (
-    <div>
+    <div className={`${styles.wrapper} ${messages.length === 0 ? styles.noMessages : ""}`}>
       <section className={styles.messageWrapper}>
         {messages.map((m, index) => {
           if (index === 0) return
@@ -60,33 +77,37 @@ export default function Chat() {
           )}
         )}
       </section>
-      <form className="flex space-x-4" onSubmit={handleSubmit}>
+      <form ref={myFormRef}
+        onSubmit={handleSubmit}
+      
+        onKeyDown={(e) => {onEnterPress(e)}}
+      >
 
-        {messages.length !== 0 ? (
+        {messages.length !== 0 && (
           <>
-            <input
-              className="rounded-md p-2 text-black"
+            <textarea
               value={input}
               onChange={handleInputChange}
               placeholder="Say something..."
+              rows={3}
             />
             <button
-              className="border-solid border-2 border-white p-2 rounded-md"
               type="submit"
             >
               Send
             </button>
           </>
-        ) : (
-          <button
-            className="border-solid border-2 border-white p-2 rounded-md"
-            type="submit"
-          >
-            Start
-          </button>
         )}
 
       </form>
+      {messages.length === 0 && (
+        <button
+          className={styles.btnInitChat}
+          onClick={() => initiateChat()}
+        >
+          Begin Generating a Custom Cover Letter
+        </button>
+      )}
     </div>
   );
 }
